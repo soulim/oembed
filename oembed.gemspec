@@ -16,4 +16,5 @@ Gem::Specification.new do |gem|
   gem.version       = Oembed::VERSION
 
   gem.add_development_dependency 'rspec', '~> 2.11.0'
+  gem.add_development_dependency 'simplecov', '~> 0.6.4'
 end
