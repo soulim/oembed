@@ -1,19 +1,14 @@
 # encoding: utf-8
-require 'uri'
 
 module Oembed
   class Uri
-    def initialize(uri, query = {})
-      @uri = URI.parse(uri)
-      @uri.query = URI.encode_www_form(query) unless query.empty?
+    def initialize(endpoint_uri, resource_uri)
+      @uri = URI.parse(endpoint_uri)
+      @uri.query = URI.encode_www_form(url: resource_uri)
     end
-    
-    def https?
-      @uri.kind_of?(URI::HTTPS)
-    end
-    
-    def path
-      @uri.request_uri
+
+    def to_s
+      @uri.to_s
     end
   end
 end

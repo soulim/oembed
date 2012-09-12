@@ -1,32 +1,14 @@
 require 'spec_helper'
-require 'oembed/uri'
 
 describe Oembed::Uri do
-  subject { Oembed::Uri.new(uri_string) }
-  
-  describe '#https?' do
-    context 'if it uses HTTPS protocol' do
-      let(:uri_string) { 'https://example.com/' }
+  let(:endpoint_uri) { 'http://example.com/oembed' }
+  let(:resource_uri) { 'http://example.com/foo' }
 
-      it 'should return true' do
-        expect(subject.https?).to be_true
-      end
-    end
+  subject { Oembed::Uri.new(endpoint_uri, resource_uri) }
 
-    context 'if it uses HTTP protocol' do
-      let(:uri_string) { 'http://example.com/' }
-
-      it 'should return false' do
-        expect(subject.https?).to be_false
-      end
-    end
-  end
-
-  describe '#path' do
-    let(:uri_string) { 'http://example.com/foo?bar=baz' }
-
-    it 'should return the full path of URI with query parameters' do
-      expect(subject.path).to eq('/foo?bar=baz')
+  describe '#to_s' do
+    it 'should return oEmbed URI string' do
+      expect(subject.to_s).to eq('http://example.com/oembed?url=http%3A%2F%2Fexample.com%2Ffoo')
     end
   end
 end
