@@ -4,9 +4,9 @@ require File.expand_path('../lib/oembed/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Alex Soulim"]
   gem.email         = ["soulim@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{A slim library to work with oEmbed format.}
+  gem.summary       = %q{A slim library to work with oEmbed format.}
+  gem.homepage      = "http://github.com/soulim/oembed"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

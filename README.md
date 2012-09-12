@@ -1,6 +1,14 @@
 # Oembed
 
-TODO: Write a gem description
+A simple to use and slim (~150 LOC) library to work with oEmbed format.
+
+> oEmbed is a format for allowing an embedded representation of a URL on third
+> party sites. The simple API allows a website to display embedded content
+> (such as photos or videos) when a user posts a link to that resource, without
+> having to parse the resource directly.
+>
+> More info on [http://oembed.com/](http://oembed.com/)
+
 
 ## Installation
 
