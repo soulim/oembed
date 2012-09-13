@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Oembed by soulim</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Oembed</h1>
+        <p>A slim library to work with oEmbed format.</p>
+
+        <p class="view"><a href="https://github.com/soulim/oembed">View the Project on GitHub <small>soulim/oembed</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/soulim/oembed/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/soulim/oembed/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/soulim/oembed">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Introductions</h1>
+
+<p><a href="http://oembed.com/"><strong>oEmbed</strong></a> is a format for allowing an embedded representation of a URL on third
+party sites. The simple API allows a website to display embedded content
+(such as photos or videos) when a user posts a link to that resource, without
+having to parse the resource directly.</p>
+
+<p><strong>oembed gem</strong> is a simple to use and slim (~150 LOC) library to work with oEmbed format. It has no external dependencies at runtime. All you need to have is Ruby itself.</p>
+
+<p>The library shares a behaviour of oEmbed client with any Ruby object. Just <code>include Oembed::Client</code> into that object and you are good to go.</p>
+
+<p><strong>oembed gem</strong> is provider agnostic. It has no pre-configured providers.
+You can build a client for any oEmbed provider of the world :)</p>
+
+<h2>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'oembed'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install oembed
+</code></pre>
+
+<h2>Usage</h2>
+
+<p>You have to do a few things to build an oEmbed client with <code>oembed</code> gem.</p>
+
+<ul>
+<li>
+<code>include Oembed::Client</code> into your object,</li>
+<li>add instance method <code>#endpoint_uri</code> to that object. This method has to return
+a string with URI of oEmbed endpoint.</li>
+</ul><p>Lets start with a simple example. It will be a client for the awesome
+<a href="http://speakerdeck.com">Speaker Deck</a>.</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+
+<span class="c1"># Speaker Deck client</span>
+<span class="k">class</span> <span class="nc">SpeakerDeck</span>
+  <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
+
+  <span class="c1"># Read more about endpoint on https://speakerdeck.com/faq#oembed</span>
+  <span class="k">def</span> <span class="nf">endpoint_uri</span>
+    <span class="s1">'http://speakerdeck.com/oembed.json'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>That's it. Now you can use a method <code>#fetch</code> to get data from oEmbed enpoint of Speaker Deck.</p>
+
+<div class="highlight"><pre><span class="n">client</span> <span class="o">=</span> <span class="no">SpeakerDeck</span><span class="o">.</span><span class="n">new</span>
+<span class="nb">p</span> <span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'https://speakerdeck.com/u/soulim/p/rails'</span><span class="p">)</span>
+</pre></div>
+
+<p>The method <code>#fetch</code> will return a hash with oEmded data.</p>
+
+<div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">"type"</span> <span class="err">=&gt;</span> <span class="s2">"rich"</span><span class="p">,</span>
+  <span class="nt">"version"</span> <span class="err">=&gt;</span> <span class="mf">1.0</span><span class="p">,</span>
+  <span class="nt">"provider_name"</span> <span class="err">=&gt;</span> <span class="s2">"Speaker Deck"</span><span class="p">,</span> 
+  <span class="nt">"provider_url"</span> <span class="err">=&gt;</span> <span class="s2">"https://speakerdeck.com/"</span><span class="p">,</span>
+  <span class="nt">"title"</span> <span class="err">=&gt;</span> <span class="s2">"Локализация приложения на базе Rails. Личный опыт и советы"</span><span class="p">,</span> 
+  <span class="nt">"author_name"</span> <span class="err">=&gt;</span> <span class="s2">"Alex Soulim"</span><span class="p">,</span> 
+  <span class="nt">"author_url"</span> <span class="err">=&gt;</span> <span class="s2">"https://speakerdeck.com/u/soulim"</span><span class="p">,</span>
+  <span class="nt">"html"</span> <span class="err">=&gt;</span> <span class="s2">"&lt;iframe style=\"border:0; padding:0; margin:0; background:transparent;\" mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" frameBorder=\"0\" allowTransparency=\"true\" id=\"presentation_frame_4fd3874cebb4b2001f0277e5\" src=\"//speakerdeck.com/embed/4fd3874cebb4b2001f0277e5\" width=\"710\" height=\"596\"&gt;&lt;/iframe&gt;\n"</span><span class="p">,</span>
+  <span class="nt">"width"</span> <span class="err">=&gt;</span> <span class="mi">710</span><span class="p">,</span>
+  <span class="nt">"height"</span> <span class="err">=&gt;</span> <span class="mi">596</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>At the moment <code>oembed</code> gem supports the JSON format only. I will fix it soon. Stay tuned! :)</p>
+
+<h2>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/soulim">soulim</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-391915-18");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
