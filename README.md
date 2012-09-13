@@ -55,7 +55,7 @@ That's it. Now you can use a method `#fetch` to get data from oEmbed enpoint of 
 
 ```ruby
 client = SpeakerDeck.new
-p client.fetch('https://speakerdeck.com/u/soulim/p/rails')
+client.fetch('https://speakerdeck.com/u/soulim/p/rails')
 ```
 
 The method `#fetch` will return a hash with oEmded data.
@@ -70,7 +70,7 @@ The method `#fetch` will return a hash with oEmded data.
   "author_name" => "Alex Soulim", 
   "author_url" => "https://speakerdeck.com/u/soulim",
   "html" => "<iframe style=\"border:0; padding:0; margin:0; background:transparent;\" mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" frameBorder=\"0\" allowTransparency=\"true\" id=\"presentation_frame_4fd3874cebb4b2001f0277e5\" src=\"//speakerdeck.com/embed/4fd3874cebb4b2001f0277e5\" width=\"710\" height=\"596\"></iframe>\n",
-  "width" => 710,
+  "width" => 710,q
   "height" => 596
 }
 ```
@@ -84,3 +84,10 @@ At the moment `oembed` gem supports the JSON format only. I will fix it soon. St
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Supported Ruby versions [![Build Status](https://secure.travis-ci.org/soulim/oembed.png)](http://travis-ci.org/soulim/oembed)  [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/soulim/oembed)
+
+This library is tested against the following Ruby implementations:
+
+- Ruby 1.9.2
+- Ruby 1.9.3
