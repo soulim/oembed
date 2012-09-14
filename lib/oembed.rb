@@ -2,6 +2,7 @@
 require 'net/http'
 require 'json'
 require 'uri'
+require 'rexml/document'
 
 module Oembed
   class Error < StandardError; end
@@ -28,6 +29,7 @@ module Oembed
 
   autoload :Client, 'oembed/client'
   autoload :Parser, 'oembed/parser'
+  autoload :XmlParser, 'oembed/xml_parser'
   autoload :Http, 'oembed/http'
   autoload :Uri, 'oembed/uri'
 end

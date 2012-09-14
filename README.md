@@ -60,7 +60,7 @@ client.fetch('https://speakerdeck.com/u/soulim/p/rails')
 
 The method `#fetch` will return a hash with oEmded data.
 
-```json
+```ruby
 {
   "type" => "rich",
   "version" => 1.0,
@@ -75,7 +75,45 @@ The method `#fetch` will return a hash with oEmded data.
 }
 ```
 
-At the moment `oembed` gem supports the JSON format only. I will fix it soon. Stay tuned! :)
+`oembed` gem supports JSON and XML response formats. Here is an example of
+client for XML endpoint.
+
+```ruby
+class Flickr
+  include Oembed::Client
+
+  def endpoint_uri
+    'http://www.flickr.com/services/oembed.xml'
+  end
+end
+
+client = Flickr.new
+client.fetch('http://www.flickr.com/photos/alex_soulim/3593916989')
+```
+
+It will return:
+
+```ruby
+{
+  "type"=>"photo",
+  "title"=>"IMG_2072",
+  "author_name"=>"Alex Soulim", "author_url"=>"http://www.flickr.com/photos/alex_soulim/",
+  "width"=>"683",
+  "height"=>"1024",
+  "url"=>"http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_b.jpg", 
+  "web_page"=>"http://www.flickr.com/photos/alex_soulim/3593916989/",
+  "thumbnail_url"=>"http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_s.jpg",
+  "thumbnail_width"=>"75",
+  "thumbnail_height"=>"75",
+  "web_page_short_url"=>"http://flic.kr/p/6tzLj2",
+  "license"=>"All Rights Reserved",
+  "license_id"=>"0",
+  "version"=>"1.0",
+  "cache_age"=>"3600",
+  "provider_name"=>"Flickr",
+  "provider_url"=>"http://www.flickr.com/"
+}
+```
 
 ## Contributing
 

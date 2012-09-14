@@ -29,7 +29,7 @@ module Oembed
     end
 
     def xml(body)
-      raise NotImplementedError, 'XML parser is not implemented'
+      Oembed::XmlParser.parse(body)
     end
   end
 end

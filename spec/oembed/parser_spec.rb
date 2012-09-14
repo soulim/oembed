@@ -1,9 +1,15 @@
 require 'spec_helper'
 
 describe Oembed::Parser do
-  let(:body)      { { 'foo' => 'bar', 'baz' => 1 } }
-  let(:json_body) { '{"foo":"bar","baz":1}' }
-  let(:xml_body)  { 'xml-body' }
+  let(:body)      { { 'foo' => 'bar', 'baz' => "1" } }
+  let(:json_body) { '{"foo":"bar","baz":"1"}' }
+  let(:xml_body)  do
+    %q(<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+       <oembed>
+         <foo>bar</foo>
+         <baz>1</baz>
+       </oembed>)
+  end
 
   describe '#parse' do
     context 'when content type is JSON' do
@@ -13,10 +19,8 @@ describe Oembed::Parser do
     end
 
     context 'when content type is XML' do
-      it 'should raise NotImplementedError' do
-        expect {
-          subject.parse(xml_body, 'text/xml')
-        }.to raise_error(NotImplementedError)
+      it 'should return parsed body' do
+        expect(subject.parse(xml_body, 'text/xml')).to eq(body)
       end
     end
 
