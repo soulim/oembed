@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["soulim@gmail.com"]
   gem.description   = %q{A slim library to work with oEmbed format.}
   gem.summary       = %q{A slim library to work with oEmbed format.}
-  gem.homepage      = "http://github.com/soulim/oembed"
+  gem.homepage      = "http://soulim.github.com/oembed"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
