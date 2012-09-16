@@ -73,7 +73,6 @@ a string with URI of oEmbed endpoint.</li>
 
 <div class="highlight"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
 
-<span class="c1"># Speaker Deck client</span>
 <span class="k">class</span> <span class="nc">SpeakerDeck</span>
   <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
 
@@ -109,7 +108,9 @@ a string with URI of oEmbed endpoint.</li>
 <p><code>oembed</code> gem supports JSON and XML response formats. Here is an example of
 client for XML endpoint.</p>
 
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Flickr</span>
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+
+<span class="k">class</span> <span class="nc">Flickr</span>
   <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
 
   <span class="k">def</span> <span class="nf">endpoint_uri</span>
@@ -142,6 +143,23 @@ client for XML endpoint.</p>
   <span class="s2">"provider_name"</span><span class="o">=&gt;</span><span class="s2">"Flickr"</span><span class="p">,</span>
   <span class="s2">"provider_url"</span><span class="o">=&gt;</span><span class="s2">"http://www.flickr.com/"</span>
 <span class="p">}</span>
+</pre></div>
+
+<p>You can make requests with additional parameters. Let's build a client for
+Instagram and use <code>:maxwidth</code> parameter.</p>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+
+<span class="k">class</span> <span class="nc">Instagram</span>
+  <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
+
+  <span class="k">def</span> <span class="nf">endpoint_uri</span>
+    <span class="s1">'http://api.instagram.com/oembed'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="no">Instagram</span><span class="o">.</span><span class="n">new</span>
+<span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'http://instagr.am/p/BUG/'</span><span class="p">,</span> <span class="n">maxwidth</span><span class="p">:</span> <span class="mi">300</span><span class="p">)</span>
 </pre></div>
 
 <h2>Contributing</h2>
