@@ -12,16 +12,16 @@ module Oembed
       @http ||= Oembed::Http.new
     end
 
-    def fetch(resource_uri)
+    def fetch(resource_uri, params = {})
       begin
-        fetch!(resource_uri)
+        fetch!(resource_uri, params)
       rescue Oembed::Error
         nil
       end
     end
 
-    def fetch!(resource_uri)
-      uri = Oembed::Uri.new(endpoint_uri, resource_uri)
+    def fetch!(resource_uri, params = {})
+      uri = Oembed::Uri.new(endpoint_uri, resource_uri, params)
       http.get(uri.to_s)
     end
   end

@@ -13,6 +13,10 @@ describe Oembed::Client do
   end
 
   describe '#fetch' do
+    it 'should accept optional params' do
+      expect {subject.fetch(resource_uri, width: 100) }.not_to raise_error
+    end
+
     it 'should fetch the date using self.fetch!' do
       subject.should_receive(:fetch!)
       subject.fetch(resource_uri)
@@ -28,9 +32,13 @@ describe Oembed::Client do
   end
 
   describe '#fetch!' do
+    it 'should accept optional params' do
+      expect {subject.fetch(resource_uri, width: 100) }.not_to raise_error
+    end
+
     it 'should prepare request URI' do
-      Oembed::Uri.should_receive(:new).with(endpoint_uri, resource_uri)
-      subject.fetch!(resource_uri)
+      Oembed::Uri.should_receive(:new).with(endpoint_uri, resource_uri, width: 100)
+      subject.fetch!(resource_uri, width: 100)
     end
 
     it 'should get oEmbed data via HTTP client' do

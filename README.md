@@ -40,7 +40,6 @@ Lets start with a simple example. It will be a client for the awesome
 ```ruby
 require 'oembed'
 
-# Speaker Deck client
 class SpeakerDeck
   include Oembed::Client
 
@@ -79,6 +78,8 @@ The method `#fetch` will return a hash with oEmded data.
 client for XML endpoint.
 
 ```ruby
+require 'oembed'
+
 class Flickr
   include Oembed::Client
 
@@ -113,6 +114,24 @@ It will return:
   "provider_name"=>"Flickr",
   "provider_url"=>"http://www.flickr.com/"
 }
+```
+
+You can make requests with additional parameters. Let's build a client for
+Instagram and use `:maxwidth` parameter.
+
+```ruby
+require 'oembed'
+
+class Instagram
+  include Oembed::Client
+
+  def endpoint_uri
+    'http://api.instagram.com/oembed'
+  end
+end
+
+client = Instagram.new
+client.fetch('http://instagr.am/p/BUG/', maxwidth: 300)
 ```
 
 ## Contributing
