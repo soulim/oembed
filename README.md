@@ -69,7 +69,7 @@ The method `#fetch` will return a hash with oEmded data.
   "author_name" => "Alex Soulim", 
   "author_url" => "https://speakerdeck.com/u/soulim",
   "html" => "<iframe style=\"border:0; padding:0; margin:0; background:transparent;\" mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" frameBorder=\"0\" allowTransparency=\"true\" id=\"presentation_frame_4fd3874cebb4b2001f0277e5\" src=\"//speakerdeck.com/embed/4fd3874cebb4b2001f0277e5\" width=\"710\" height=\"596\"></iframe>\n",
-  "width" => 710,q
+  "width" => 710,
   "height" => 596
 }
 ```
