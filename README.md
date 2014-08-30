@@ -35,12 +35,12 @@ You have to do a few things to build an oEmbed client with `oembed` gem.
   a string with URI of oEmbed endpoint.
 
 Lets start with a simple example. It will be a client for the awesome
-[Speaker Deck](http://speakerdeck.com).
+[Speaker Deck](http://speakerdeck.com). Note that we call the service class NameApi - this is to avoid clashing with gems (such as twitter) that may have classes named after the service.
 
 ```ruby
 require 'oembed'
 
-class SpeakerDeck
+class SpeakerDeckApi
   include Oembed::Client
 
   # Read more about endpoint on https://speakerdeck.com/faq#oembed
@@ -53,7 +53,7 @@ end
 That's it. Now you can use a method `#fetch` to get data from oEmbed enpoint of Speaker Deck.
 
 ```ruby
-client = SpeakerDeck.new
+client = SpeakerDeckApi.new
 client.fetch('https://speakerdeck.com/u/soulim/p/rails')
 ```
 
@@ -80,7 +80,7 @@ client for XML endpoint.
 ```ruby
 require 'oembed'
 
-class Flickr
+class FlickrApi
   include Oembed::Client
 
   def endpoint_uri
@@ -88,7 +88,7 @@ class Flickr
   end
 end
 
-client = Flickr.new
+client = FlickrApi.new
 client.fetch('http://www.flickr.com/photos/alex_soulim/3593916989')
 ```
 
@@ -122,7 +122,7 @@ Instagram and use `:maxwidth` parameter.
 ```ruby
 require 'oembed'
 
-class Instagram
+class InstagramApi
   include Oembed::Client
 
   def endpoint_uri
@@ -130,8 +130,29 @@ class Instagram
   end
 end
 
-client = Instagram.new
+client = InstagramApi.new
 client.fetch('http://instagr.am/p/BUG/', maxwidth: 300)
+```
+
+If you need to always customise the fetch with additional parameters this can be done by providing a fetch method in the service class. In this example we are adding a maxwidth parameter to the request.
+
+```ruby
+require 'oembed'
+
+class YoutubeApi
+  include Oembed::Client
+
+  def endpoint_uri
+    'https://www.youtube.com/oembed'
+  end
+
+  def fetch(url, options={})
+    super url, options.merge(maxwidth: 620)
+  end
+end
+
+client = YoutubeApi.new
+client.fetch('https://www.youtube.com/watch?v=_DRNgL76OLc')
 ```
 
 ## Contributing
