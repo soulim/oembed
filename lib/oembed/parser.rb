@@ -1,4 +1,7 @@
 # encoding: utf-8
+require 'json'
+require 'oembed/errors'
+require 'oembed/xml_parser'
 
 module Oembed
   class Parser

@@ -1,4 +1,7 @@
 # encoding: utf-8
+require 'net/http'
+require 'oembed/errors'
+require 'uri'
 
 module Oembed
   class Http

@@ -1,4 +1,7 @@
 # encoding: utf-8
+require 'oembed/errors'
+require 'oembed/http'
+require 'oembed/uri'
 
 module Oembed
   module Client

@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'oembed/errors'
+require 'rexml/document'
 
 module Oembed
   class XmlParser
