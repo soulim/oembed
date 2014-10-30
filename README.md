@@ -1,4 +1,4 @@
-# Introductions
+# oembed gem [![Build Status](http://img.shields.io/travis/soulim/oembed.svg?style=flat)](http://travis-ci.org/soulim/oembed)  [![Code Climate](http://img.shields.io/codeclimate/github/soulim/oembed.svg?style=flat)](https://codeclimate.com/github/soulim/oembed)
 
 [**oEmbed**](http://oembed.com/) is a format for allowing an embedded representation of a URL on third
 party sites. The simple API allows a website to display embedded content
@@ -63,10 +63,10 @@ The method `#fetch` will return a hash with oEmded data.
 {
   "type" => "rich",
   "version" => 1.0,
-  "provider_name" => "Speaker Deck", 
+  "provider_name" => "Speaker Deck",
   "provider_url" => "https://speakerdeck.com/",
-  "title" => "Локализация приложения на базе Rails. Личный опыт и советы", 
-  "author_name" => "Alex Soulim", 
+  "title" => "Локализация приложения на базе Rails. Личный опыт и советы",
+  "author_name" => "Alex Soulim",
   "author_url" => "https://speakerdeck.com/u/soulim",
   "html" => "<iframe style=\"border:0; padding:0; margin:0; background:transparent;\" mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" frameBorder=\"0\" allowTransparency=\"true\" id=\"presentation_frame_4fd3874cebb4b2001f0277e5\" src=\"//speakerdeck.com/embed/4fd3874cebb4b2001f0277e5\" width=\"710\" height=\"596\"></iframe>\n",
   "width" => 710,
@@ -101,7 +101,7 @@ It will return:
   "author_name"=>"Alex Soulim", "author_url"=>"http://www.flickr.com/photos/alex_soulim/",
   "width"=>"683",
   "height"=>"1024",
-  "url"=>"http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_b.jpg", 
+  "url"=>"http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_b.jpg",
   "web_page"=>"http://www.flickr.com/photos/alex_soulim/3593916989/",
   "thumbnail_url"=>"http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_s.jpg",
   "thumbnail_width"=>"75",
@@ -163,9 +163,12 @@ client.fetch('https://www.youtube.com/watch?v=_DRNgL76OLc')
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## Supported Ruby versions [![Build Status](https://secure.travis-ci.org/soulim/oembed.png)](http://travis-ci.org/soulim/oembed)  [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/soulim/oembed)
+## Supported Ruby versions
 
 This library is tested against the following Ruby implementations:
 
-- Ruby 1.9.2
-- Ruby 1.9.3
+- MRI Ruby 2.1
+- MRI Ruby 2.0
+- MRI Ruby 1.9.3
+- JRuby
+- Rubinius
