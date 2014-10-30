@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'oembed/client'
 
-describe Oembed::Client do
+RSpec.describe Oembed::Client do
   let(:http)         { double('Http', get: 'foo') }
   let(:endpoint_uri) { 'http://example.com/oembed' }
   let(:resource_uri) { 'http://example.com/foo' }
@@ -18,12 +18,12 @@ describe Oembed::Client do
     end
 
     it 'should fetch the date using self.fetch!' do
-      subject.should_receive(:fetch!)
+      expect(subject).to receive(:fetch!)
       subject.fetch(resource_uri)
     end
 
     context 'when there is an error during request' do
-      before { http.stub(:get).and_raise(Oembed::Error) }
+      before { allow(http).to receive(:get).and_raise(Oembed::Error) }
 
       it 'should return nil' do
         expect(subject.fetch(resource_uri)).to be_nil
@@ -37,12 +37,16 @@ describe Oembed::Client do
     end
 
     it 'should prepare request URI' do
-      Oembed::Uri.should_receive(:new).with(endpoint_uri, resource_uri, width: 100)
+      expect(Oembed::Uri).to receive(:new).with(
+        endpoint_uri,
+        resource_uri,
+        width: 100
+      )
       subject.fetch!(resource_uri, width: 100)
     end
 
     it 'should get oEmbed data via HTTP client' do
-      http.should_receive(:get)
+      expect(http).to receive(:get)
       subject.fetch!(resource_uri)
     end
   end

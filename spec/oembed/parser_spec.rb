@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'oembed/parser'
 
-describe Oembed::Parser do
+RSpec.describe Oembed::Parser do
   let(:body)      { { 'foo' => 'bar', 'baz' => "1" } }
   let(:json_body) { '{"foo":"bar","baz":"1"}' }
   let(:xml_body)  do

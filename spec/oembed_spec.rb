@@ -1,5 +1,5 @@
-require 'spec_helper'
 require 'oembed'
 
-describe Oembed do
+RSpec.describe Oembed do
+  pending
 end

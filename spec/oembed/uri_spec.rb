@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'oembed/uri'
 
-describe Oembed::Uri do
+RSpec.describe Oembed::Uri do
   let(:endpoint_uri) { 'http://example.com/oembed' }
   let(:resource_uri) { 'http://example.com/foo' }
 

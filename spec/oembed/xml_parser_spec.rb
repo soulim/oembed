@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'oembed/xml_parser'
 
-describe Oembed::XmlParser do
+RSpec.describe Oembed::XmlParser do
   let(:source) do
     %q(<?xml version="1.0" encoding="utf-8" standalone="yes"?>
        <oembed>
@@ -19,7 +19,9 @@ describe Oembed::XmlParser do
 
     context 'when there is an exception during parsing' do
       before do
-        REXML::Document.stub(:new).and_raise(REXML::ParseException.new('error'))
+        allow(REXML::Document).to receive(:new).and_raise(
+          REXML::ParseException.new('error')
+        )
       end
 
       it 'should raise Oembed::ParserError' do

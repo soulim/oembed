@@ -1,19 +1,30 @@
 require 'simplecov'
 
 SimpleCov.start
+
 RSpec.configure do |config|
-  config.treat_symbols_as_metadata_keys_with_true_values = true
-  # config.run_all_when_everything_filtered = true
-  # config.filter_run :focus
+  config.expect_with :rspec do |expectations|
+    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  end
 
-  # Run specs in random order to surface order dependencies. If you find an
-  # order dependency and want to debug it, you can fix the order by providing
-  # the seed, which is printed after each run.
-  #     --seed 1234
-  config.order = 'random'
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
 
-  # Disable should syntax
-  config.expect_with(:rspec) { |c| c.syntax = :expect }
+  config.filter_run :focus
+  config.run_all_when_everything_filtered = true
+
+  config.disable_monkey_patching!
+
+  config.warnings = true
+
+  if config.files_to_run.one?
+    config.default_formatter = 'doc'
+  end
+
+  config.profile_examples = 10
+
+  config.order = :random
+
+  Kernel.srand config.seed
 end
-
-require 'oembed'

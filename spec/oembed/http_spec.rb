@@ -1,7 +1,7 @@
-require 'spec_helper'
 require 'fakeweb'
+require 'oembed/http'
 
-describe Oembed::Http do
+RSpec.describe Oembed::Http do
   let(:parser) { double('Parser', parse: 'foo') }
   let(:uri)    { 'http://example.com/foo' }
 
@@ -16,7 +16,7 @@ describe Oembed::Http do
       end
 
       it 'should parse response body' do
-        parser.should_receive(:parse)
+        expect(parser).to receive(:parse)
         subject.get(uri)
       end
 
