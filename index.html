@@ -28,7 +28,9 @@
         </ul>
       </header>
       <section>
-        <h1>Introductions</h1>
+        <h1>
+<a name="oembed-gem---" class="anchor" href="#oembed-gem---"><span class="octicon octicon-link"></span></a>oembed gem <a href="http://travis-ci.org/soulim/oembed"><img src="http://img.shields.io/travis/soulim/oembed.svg?style=flat" alt="Build Status"></a>  <a href="https://codeclimate.com/github/soulim/oembed"><img src="http://img.shields.io/codeclimate/github/soulim/oembed.svg?style=flat" alt="Code Climate"></a>
+</h1>
 
 <p><a href="http://oembed.com/"><strong>oEmbed</strong></a> is a format for allowing an embedded representation of a URL on third
 party sites. The simple API allows a website to display embedded content
@@ -42,7 +44,8 @@ having to parse the resource directly.</p>
 <p><strong>oembed gem</strong> is provider agnostic. It has no pre-configured providers.
 You can build a client for any oEmbed provider of the world :)</p>
 
-<h2>Installation</h2>
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>Add this line to your application's Gemfile:</p>
 
@@ -59,7 +62,8 @@ You can build a client for any oEmbed provider of the world :)</p>
 <pre><code>$ gem install oembed
 </code></pre>
 
-<h2>Usage</h2>
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>You have to do a few things to build an oEmbed client with <code>oembed</code> gem.</p>
 
@@ -68,12 +72,14 @@ You can build a client for any oEmbed provider of the world :)</p>
 <code>include Oembed::Client</code> into your object,</li>
 <li>add instance method <code>#endpoint_uri</code> to that object. This method has to return
 a string with URI of oEmbed endpoint.</li>
-</ul><p>Lets start with a simple example. It will be a client for the awesome
-<a href="http://speakerdeck.com">Speaker Deck</a>.</p>
+</ul>
 
-<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+<p>Lets start with a simple example. It will be a client for the awesome
+<a href="http://speakerdeck.com">Speaker Deck</a>. Note that we call the service class NameApi - this is to avoid clashing with gems (such as twitter) that may have classes named after the service.</p>
 
-<span class="k">class</span> <span class="nc">SpeakerDeck</span>
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+
+<span class="k">class</span> <span class="nc">SpeakerDeckApi</span>
   <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
 
   <span class="c1"># Read more about endpoint on https://speakerdeck.com/faq#oembed</span>
@@ -85,19 +91,19 @@ a string with URI of oEmbed endpoint.</li>
 
 <p>That's it. Now you can use a method <code>#fetch</code> to get data from oEmbed enpoint of Speaker Deck.</p>
 
-<div class="highlight"><pre><span class="n">client</span> <span class="o">=</span> <span class="no">SpeakerDeck</span><span class="o">.</span><span class="n">new</span>
+<div class="highlight highlight-ruby"><pre><span class="n">client</span> <span class="o">=</span> <span class="no">SpeakerDeckApi</span><span class="o">.</span><span class="n">new</span>
 <span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'https://speakerdeck.com/u/soulim/p/rails'</span><span class="p">)</span>
 </pre></div>
 
 <p>The method <code>#fetch</code> will return a hash with oEmded data.</p>
 
-<div class="highlight"><pre><span class="p">{</span>
+<div class="highlight highlight-ruby"><pre><span class="p">{</span>
   <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"rich"</span><span class="p">,</span>
   <span class="s2">"version"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"provider_name"</span> <span class="o">=&gt;</span> <span class="s2">"Speaker Deck"</span><span class="p">,</span> 
+  <span class="s2">"provider_name"</span> <span class="o">=&gt;</span> <span class="s2">"Speaker Deck"</span><span class="p">,</span>
   <span class="s2">"provider_url"</span> <span class="o">=&gt;</span> <span class="s2">"https://speakerdeck.com/"</span><span class="p">,</span>
-  <span class="s2">"title"</span> <span class="o">=&gt;</span> <span class="s2">"Локализация приложения на базе Rails. Личный опыт и советы"</span><span class="p">,</span> 
-  <span class="s2">"author_name"</span> <span class="o">=&gt;</span> <span class="s2">"Alex Soulim"</span><span class="p">,</span> 
+  <span class="s2">"title"</span> <span class="o">=&gt;</span> <span class="s2">"Локализация приложения на базе Rails. Личный опыт и советы"</span><span class="p">,</span>
+  <span class="s2">"author_name"</span> <span class="o">=&gt;</span> <span class="s2">"Alex Soulim"</span><span class="p">,</span>
   <span class="s2">"author_url"</span> <span class="o">=&gt;</span> <span class="s2">"https://speakerdeck.com/u/soulim"</span><span class="p">,</span>
   <span class="s2">"html"</span> <span class="o">=&gt;</span> <span class="s2">"&lt;iframe style=</span><span class="se">\"</span><span class="s2">border:0; padding:0; margin:0; background:transparent;</span><span class="se">\"</span><span class="s2"> mozallowfullscreen=</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2"> webkitallowfullscreen=</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2"> frameBorder=</span><span class="se">\"</span><span class="s2">0</span><span class="se">\"</span><span class="s2"> allowTransparency=</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2"> id=</span><span class="se">\"</span><span class="s2">presentation_frame_4fd3874cebb4b2001f0277e5</span><span class="se">\"</span><span class="s2"> src=</span><span class="se">\"</span><span class="s2">//speakerdeck.com/embed/4fd3874cebb4b2001f0277e5</span><span class="se">\"</span><span class="s2"> width=</span><span class="se">\"</span><span class="s2">710</span><span class="se">\"</span><span class="s2"> height=</span><span class="se">\"</span><span class="s2">596</span><span class="se">\"</span><span class="s2">&gt;&lt;/iframe&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
   <span class="s2">"width"</span> <span class="o">=&gt;</span> <span class="mi">710</span><span class="p">,</span>
@@ -108,9 +114,9 @@ a string with URI of oEmbed endpoint.</li>
 <p><code>oembed</code> gem supports JSON and XML response formats. Here is an example of
 client for XML endpoint.</p>
 
-<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
 
-<span class="k">class</span> <span class="nc">Flickr</span>
+<span class="k">class</span> <span class="nc">FlickrApi</span>
   <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
 
   <span class="k">def</span> <span class="nf">endpoint_uri</span>
@@ -118,19 +124,19 @@ client for XML endpoint.</p>
   <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="n">client</span> <span class="o">=</span> <span class="no">Flickr</span><span class="o">.</span><span class="n">new</span>
+<span class="n">client</span> <span class="o">=</span> <span class="no">FlickrApi</span><span class="o">.</span><span class="n">new</span>
 <span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'http://www.flickr.com/photos/alex_soulim/3593916989'</span><span class="p">)</span>
 </pre></div>
 
 <p>It will return:</p>
 
-<div class="highlight"><pre><span class="p">{</span>
+<div class="highlight highlight-ruby"><pre><span class="p">{</span>
   <span class="s2">"type"</span><span class="o">=&gt;</span><span class="s2">"photo"</span><span class="p">,</span>
   <span class="s2">"title"</span><span class="o">=&gt;</span><span class="s2">"IMG_2072"</span><span class="p">,</span>
   <span class="s2">"author_name"</span><span class="o">=&gt;</span><span class="s2">"Alex Soulim"</span><span class="p">,</span> <span class="s2">"author_url"</span><span class="o">=&gt;</span><span class="s2">"http://www.flickr.com/photos/alex_soulim/"</span><span class="p">,</span>
   <span class="s2">"width"</span><span class="o">=&gt;</span><span class="s2">"683"</span><span class="p">,</span>
   <span class="s2">"height"</span><span class="o">=&gt;</span><span class="s2">"1024"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">=&gt;</span><span class="s2">"http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_b.jpg"</span><span class="p">,</span> 
+  <span class="s2">"url"</span><span class="o">=&gt;</span><span class="s2">"http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_b.jpg"</span><span class="p">,</span>
   <span class="s2">"web_page"</span><span class="o">=&gt;</span><span class="s2">"http://www.flickr.com/photos/alex_soulim/3593916989/"</span><span class="p">,</span>
   <span class="s2">"thumbnail_url"</span><span class="o">=&gt;</span><span class="s2">"http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_s.jpg"</span><span class="p">,</span>
   <span class="s2">"thumbnail_width"</span><span class="o">=&gt;</span><span class="s2">"75"</span><span class="p">,</span>
@@ -148,9 +154,9 @@ client for XML endpoint.</p>
 <p>You can make requests with additional parameters. Let's build a client for
 Instagram and use <code>:maxwidth</code> parameter.</p>
 
-<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
 
-<span class="k">class</span> <span class="nc">Instagram</span>
+<span class="k">class</span> <span class="nc">InstagramApi</span>
   <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
 
   <span class="k">def</span> <span class="nf">endpoint_uri</span>
@@ -158,11 +164,32 @@ Instagram and use <code>:maxwidth</code> parameter.</p>
   <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="n">client</span> <span class="o">=</span> <span class="no">Instagram</span><span class="o">.</span><span class="n">new</span>
-<span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'http://instagr.am/p/BUG/'</span><span class="p">,</span> <span class="n">maxwidth</span><span class="p">:</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="no">InstagramApi</span><span class="o">.</span><span class="n">new</span>
+<span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'http://instagr.am/p/BUG/'</span><span class="p">,</span> <span class="ss">maxwidth</span><span class="p">:</span> <span class="mi">300</span><span class="p">)</span>
 </pre></div>
 
-<h2>Contributing</h2>
+<p>If you need to always customise the fetch with additional parameters this can be done by providing a fetch method in the service class. In this example we are adding a maxwidth parameter to the request.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+
+<span class="k">class</span> <span class="nc">YoutubeApi</span>
+  <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
+
+  <span class="k">def</span> <span class="nf">endpoint_uri</span>
+    <span class="s1">'https://www.youtube.com/oembed'</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+    <span class="k">super</span> <span class="n">url</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="ss">maxwidth</span><span class="p">:</span> <span class="mi">620</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="no">YoutubeApi</span><span class="o">.</span><span class="n">new</span>
+<span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'https://www.youtube.com/watch?v=_DRNgL76OLc'</span><span class="p">)</span>
+</pre></div>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
 <ol>
 <li>Fork it</li>
@@ -170,14 +197,19 @@ Instagram and use <code>:maxwidth</code> parameter.</p>
 <li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
 <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
 <li>Create new Pull Request</li>
-</ol><h2>Supported Ruby versions <a href="http://travis-ci.org/soulim/oembed"><img src="https://secure.travis-ci.org/soulim/oembed.png" alt="Build Status"></a>  <a href="https://codeclimate.com/github/soulim/oembed"><img src="https://codeclimate.com/badge.png" alt="Code Climate"></a>
-</h2>
+</ol>
+
+<h2>
+<a name="supported-ruby-versions" class="anchor" href="#supported-ruby-versions"><span class="octicon octicon-link"></span></a>Supported Ruby versions</h2>
 
 <p>This library is tested against the following Ruby implementations:</p>
 
 <ul>
-<li>Ruby 1.9.2</li>
-<li>Ruby 1.9.3</li>
+<li>MRI Ruby 2.1</li>
+<li>MRI Ruby 2.0</li>
+<li>MRI Ruby 1.9.3</li>
+<li>JRuby</li>
+<li>Rubinius</li>
 </ul>
       </section>
       <footer>
