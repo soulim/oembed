@@ -1,4 +1,5 @@
-# oembed gem [![Build Status](http://img.shields.io/travis/soulim/oembed.svg?style=flat)](http://travis-ci.org/soulim/oembed)  [![Code Climate](http://img.shields.io/codeclimate/github/soulim/oembed.svg?style=flat)](https://codeclimate.com/github/soulim/oembed)
+# oembed gem
+[![Build Status](http://img.shields.io/travis/soulim/oembed.svg?style=flat)](http://travis-ci.org/soulim/oembed)  [![Code Climate](http://img.shields.io/codeclimate/github/soulim/oembed.svg?style=flat)](https://codeclimate.com/github/soulim/oembed) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/soulim/oembed/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 [**oEmbed**](http://oembed.com/) is a format for allowing an embedded representation of a URL on third
 party sites. The simple API allows a website to display embedded content
