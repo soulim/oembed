@@ -172,4 +172,3 @@ This library is tested against the following Ruby implementations:
 - MRI Ruby 2.0
 - MRI Ruby 1.9.3
 - JRuby
-- Rubinius
