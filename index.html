@@ -29,8 +29,9 @@
       </header>
       <section>
         <h1>
-<a name="oembed-gem---" class="anchor" href="#oembed-gem---"><span class="octicon octicon-link"></span></a>oembed gem <a href="http://travis-ci.org/soulim/oembed"><img src="http://img.shields.io/travis/soulim/oembed.svg?style=flat" alt="Build Status"></a>  <a href="https://codeclimate.com/github/soulim/oembed"><img src="http://img.shields.io/codeclimate/github/soulim/oembed.svg?style=flat" alt="Code Climate"></a>
-</h1>
+<a id="oembed-gem" class="anchor" href="#oembed-gem" aria-hidden="true"><span class="octicon octicon-link"></span></a>oembed gem</h1>
+
+<p><a href="http://travis-ci.org/soulim/oembed"><img src="http://img.shields.io/travis/soulim/oembed.svg?style=flat" alt="Build Status"></a>  <a href="https://codeclimate.com/github/soulim/oembed"><img src="http://img.shields.io/codeclimate/github/soulim/oembed.svg?style=flat" alt="Code Climate"></a></p>
 
 <p><a href="http://oembed.com/"><strong>oEmbed</strong></a> is a format for allowing an embedded representation of a URL on third
 party sites. The simple API allows a website to display embedded content
@@ -45,7 +46,7 @@ having to parse the resource directly.</p>
 You can build a client for any oEmbed provider of the world :)</p>
 
 <h2>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>Add this line to your application's Gemfile:</p>
 
@@ -63,7 +64,7 @@ You can build a client for any oEmbed provider of the world :)</p>
 </code></pre>
 
 <h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>You have to do a few things to build an oEmbed client with <code>oembed</code> gem.</p>
 
@@ -77,119 +78,112 @@ a string with URI of oEmbed endpoint.</li>
 <p>Lets start with a simple example. It will be a client for the awesome
 <a href="http://speakerdeck.com">Speaker Deck</a>. Note that we call the service class NameApi - this is to avoid clashing with gems (such as twitter) that may have classes named after the service.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+<div class="highlight highlight-ruby"><pre><span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>oembed<span class="pl-pds">'</span></span>
 
-<span class="k">class</span> <span class="nc">SpeakerDeckApi</span>
-  <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
+<span class="pl-k">class</span> <span class="pl-en">SpeakerDeckApi</span>
+  <span class="pl-k">include</span> <span class="pl-s3">Oembed</span>::<span class="pl-vo">Client</span>
 
-  <span class="c1"># Read more about endpoint on https://speakerdeck.com/faq#oembed</span>
-  <span class="k">def</span> <span class="nf">endpoint_uri</span>
-    <span class="s1">'http://speakerdeck.com/oembed.json'</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</pre></div>
+  <span class="pl-c"># Read more about endpoint on https://speakerdeck.com/faq#oembed</span>
+  <span class="pl-k">def</span> <span class="pl-en">endpoint_uri</span>
+    <span class="pl-s1"><span class="pl-pds">'</span>http://speakerdeck.com/oembed.json<span class="pl-pds">'</span></span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
 
 <p>That's it. Now you can use a method <code>#fetch</code> to get data from oEmbed enpoint of Speaker Deck.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="n">client</span> <span class="o">=</span> <span class="no">SpeakerDeckApi</span><span class="o">.</span><span class="n">new</span>
-<span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'https://speakerdeck.com/u/soulim/p/rails'</span><span class="p">)</span>
-</pre></div>
+<div class="highlight highlight-ruby"><pre>client <span class="pl-k">=</span> <span class="pl-s3">SpeakerDeckApi</span>.<span class="pl-k">new</span>
+client.fetch(<span class="pl-s1"><span class="pl-pds">'</span>https://speakerdeck.com/u/soulim/p/rails<span class="pl-pds">'</span></span>)</pre></div>
 
 <p>The method <code>#fetch</code> will return a hash with oEmded data.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="p">{</span>
-  <span class="s2">"type"</span> <span class="o">=&gt;</span> <span class="s2">"rich"</span><span class="p">,</span>
-  <span class="s2">"version"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"provider_name"</span> <span class="o">=&gt;</span> <span class="s2">"Speaker Deck"</span><span class="p">,</span>
-  <span class="s2">"provider_url"</span> <span class="o">=&gt;</span> <span class="s2">"https://speakerdeck.com/"</span><span class="p">,</span>
-  <span class="s2">"title"</span> <span class="o">=&gt;</span> <span class="s2">"Локализация приложения на базе Rails. Личный опыт и советы"</span><span class="p">,</span>
-  <span class="s2">"author_name"</span> <span class="o">=&gt;</span> <span class="s2">"Alex Soulim"</span><span class="p">,</span>
-  <span class="s2">"author_url"</span> <span class="o">=&gt;</span> <span class="s2">"https://speakerdeck.com/u/soulim"</span><span class="p">,</span>
-  <span class="s2">"html"</span> <span class="o">=&gt;</span> <span class="s2">"&lt;iframe style=</span><span class="se">\"</span><span class="s2">border:0; padding:0; margin:0; background:transparent;</span><span class="se">\"</span><span class="s2"> mozallowfullscreen=</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2"> webkitallowfullscreen=</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2"> frameBorder=</span><span class="se">\"</span><span class="s2">0</span><span class="se">\"</span><span class="s2"> allowTransparency=</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2"> id=</span><span class="se">\"</span><span class="s2">presentation_frame_4fd3874cebb4b2001f0277e5</span><span class="se">\"</span><span class="s2"> src=</span><span class="se">\"</span><span class="s2">//speakerdeck.com/embed/4fd3874cebb4b2001f0277e5</span><span class="se">\"</span><span class="s2"> width=</span><span class="se">\"</span><span class="s2">710</span><span class="se">\"</span><span class="s2"> height=</span><span class="se">\"</span><span class="s2">596</span><span class="se">\"</span><span class="s2">&gt;&lt;/iframe&gt;</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
-  <span class="s2">"width"</span> <span class="o">=&gt;</span> <span class="mi">710</span><span class="p">,</span>
-  <span class="s2">"height"</span> <span class="o">=&gt;</span> <span class="mi">596</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight highlight-ruby"><pre>{
+  <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>rich<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>version<span class="pl-pds">"</span></span> =&gt; <span class="pl-c1">1.0</span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>provider_name<span class="pl-pds">"</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>Speaker Deck<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>provider_url<span class="pl-pds">"</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>https://speakerdeck.com/<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>Локализация приложения на базе Rails. Личный опыт и советы<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>author_name<span class="pl-pds">"</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>Alex Soulim<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>author_url<span class="pl-pds">"</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>https://speakerdeck.com/u/soulim<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>html<span class="pl-pds">"</span></span> =&gt; <span class="pl-s1"><span class="pl-pds">"</span>&lt;iframe style=<span class="pl-cce">\"</span>border:0; padding:0; margin:0; background:transparent;<span class="pl-cce">\"</span> mozallowfullscreen=<span class="pl-cce">\"</span>true<span class="pl-cce">\"</span> webkitallowfullscreen=<span class="pl-cce">\"</span>true<span class="pl-cce">\"</span> frameBorder=<span class="pl-cce">\"</span>0<span class="pl-cce">\"</span> allowTransparency=<span class="pl-cce">\"</span>true<span class="pl-cce">\"</span> id=<span class="pl-cce">\"</span>presentation_frame_4fd3874cebb4b2001f0277e5<span class="pl-cce">\"</span> src=<span class="pl-cce">\"</span>//speakerdeck.com/embed/4fd3874cebb4b2001f0277e5<span class="pl-cce">\"</span> width=<span class="pl-cce">\"</span>710<span class="pl-cce">\"</span> height=<span class="pl-cce">\"</span>596<span class="pl-cce">\"</span>&gt;&lt;/iframe&gt;<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>width<span class="pl-pds">"</span></span> =&gt; <span class="pl-c1">710</span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>height<span class="pl-pds">"</span></span> =&gt; <span class="pl-c1">596</span>
+}</pre></div>
 
 <p><code>oembed</code> gem supports JSON and XML response formats. Here is an example of
 client for XML endpoint.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+<div class="highlight highlight-ruby"><pre><span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>oembed<span class="pl-pds">'</span></span>
 
-<span class="k">class</span> <span class="nc">FlickrApi</span>
-  <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
+<span class="pl-k">class</span> <span class="pl-en">FlickrApi</span>
+  <span class="pl-k">include</span> <span class="pl-s3">Oembed</span>::<span class="pl-vo">Client</span>
 
-  <span class="k">def</span> <span class="nf">endpoint_uri</span>
-    <span class="s1">'http://www.flickr.com/services/oembed.xml'</span>
-  <span class="k">end</span>
-<span class="k">end</span>
+  <span class="pl-k">def</span> <span class="pl-en">endpoint_uri</span>
+    <span class="pl-s1"><span class="pl-pds">'</span>http://www.flickr.com/services/oembed.xml<span class="pl-pds">'</span></span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
 
-<span class="n">client</span> <span class="o">=</span> <span class="no">FlickrApi</span><span class="o">.</span><span class="n">new</span>
-<span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'http://www.flickr.com/photos/alex_soulim/3593916989'</span><span class="p">)</span>
-</pre></div>
+client <span class="pl-k">=</span> <span class="pl-s3">FlickrApi</span>.<span class="pl-k">new</span>
+client.fetch(<span class="pl-s1"><span class="pl-pds">'</span>http://www.flickr.com/photos/alex_soulim/3593916989<span class="pl-pds">'</span></span>)</pre></div>
 
 <p>It will return:</p>
 
-<div class="highlight highlight-ruby"><pre><span class="p">{</span>
-  <span class="s2">"type"</span><span class="o">=&gt;</span><span class="s2">"photo"</span><span class="p">,</span>
-  <span class="s2">"title"</span><span class="o">=&gt;</span><span class="s2">"IMG_2072"</span><span class="p">,</span>
-  <span class="s2">"author_name"</span><span class="o">=&gt;</span><span class="s2">"Alex Soulim"</span><span class="p">,</span> <span class="s2">"author_url"</span><span class="o">=&gt;</span><span class="s2">"http://www.flickr.com/photos/alex_soulim/"</span><span class="p">,</span>
-  <span class="s2">"width"</span><span class="o">=&gt;</span><span class="s2">"683"</span><span class="p">,</span>
-  <span class="s2">"height"</span><span class="o">=&gt;</span><span class="s2">"1024"</span><span class="p">,</span>
-  <span class="s2">"url"</span><span class="o">=&gt;</span><span class="s2">"http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_b.jpg"</span><span class="p">,</span>
-  <span class="s2">"web_page"</span><span class="o">=&gt;</span><span class="s2">"http://www.flickr.com/photos/alex_soulim/3593916989/"</span><span class="p">,</span>
-  <span class="s2">"thumbnail_url"</span><span class="o">=&gt;</span><span class="s2">"http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_s.jpg"</span><span class="p">,</span>
-  <span class="s2">"thumbnail_width"</span><span class="o">=&gt;</span><span class="s2">"75"</span><span class="p">,</span>
-  <span class="s2">"thumbnail_height"</span><span class="o">=&gt;</span><span class="s2">"75"</span><span class="p">,</span>
-  <span class="s2">"web_page_short_url"</span><span class="o">=&gt;</span><span class="s2">"http://flic.kr/p/6tzLj2"</span><span class="p">,</span>
-  <span class="s2">"license"</span><span class="o">=&gt;</span><span class="s2">"All Rights Reserved"</span><span class="p">,</span>
-  <span class="s2">"license_id"</span><span class="o">=&gt;</span><span class="s2">"0"</span><span class="p">,</span>
-  <span class="s2">"version"</span><span class="o">=&gt;</span><span class="s2">"1.0"</span><span class="p">,</span>
-  <span class="s2">"cache_age"</span><span class="o">=&gt;</span><span class="s2">"3600"</span><span class="p">,</span>
-  <span class="s2">"provider_name"</span><span class="o">=&gt;</span><span class="s2">"Flickr"</span><span class="p">,</span>
-  <span class="s2">"provider_url"</span><span class="o">=&gt;</span><span class="s2">"http://www.flickr.com/"</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight highlight-ruby"><pre>{
+  <span class="pl-s1"><span class="pl-pds">"</span>type<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>photo<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>title<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>IMG_2072<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>author_name<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>Alex Soulim<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>author_url<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>http://www.flickr.com/photos/alex_soulim/<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>width<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>683<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>height<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>1024<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_b.jpg<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>web_page<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>http://www.flickr.com/photos/alex_soulim/3593916989/<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>thumbnail_url<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>http://farm4.staticflickr.com/3618/3593916989_3d8aa991ea_s.jpg<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>thumbnail_width<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>75<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>thumbnail_height<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>75<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>web_page_short_url<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>http://flic.kr/p/6tzLj2<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>license<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>All Rights Reserved<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>license_id<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>version<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>1.0<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>cache_age<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>3600<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>provider_name<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>Flickr<span class="pl-pds">"</span></span>,
+  <span class="pl-s1"><span class="pl-pds">"</span>provider_url<span class="pl-pds">"</span></span>=&gt;<span class="pl-s1"><span class="pl-pds">"</span>http://www.flickr.com/<span class="pl-pds">"</span></span>
+}</pre></div>
 
 <p>You can make requests with additional parameters. Let's build a client for
 Instagram and use <code>:maxwidth</code> parameter.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+<div class="highlight highlight-ruby"><pre><span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>oembed<span class="pl-pds">'</span></span>
 
-<span class="k">class</span> <span class="nc">InstagramApi</span>
-  <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
+<span class="pl-k">class</span> <span class="pl-en">InstagramApi</span>
+  <span class="pl-k">include</span> <span class="pl-s3">Oembed</span>::<span class="pl-vo">Client</span>
 
-  <span class="k">def</span> <span class="nf">endpoint_uri</span>
-    <span class="s1">'http://api.instagram.com/oembed'</span>
-  <span class="k">end</span>
-<span class="k">end</span>
+  <span class="pl-k">def</span> <span class="pl-en">endpoint_uri</span>
+    <span class="pl-s1"><span class="pl-pds">'</span>http://api.instagram.com/oembed<span class="pl-pds">'</span></span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
 
-<span class="n">client</span> <span class="o">=</span> <span class="no">InstagramApi</span><span class="o">.</span><span class="n">new</span>
-<span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'http://instagr.am/p/BUG/'</span><span class="p">,</span> <span class="ss">maxwidth</span><span class="p">:</span> <span class="mi">300</span><span class="p">)</span>
-</pre></div>
+client <span class="pl-k">=</span> <span class="pl-s3">InstagramApi</span>.<span class="pl-k">new</span>
+client.fetch(<span class="pl-s1"><span class="pl-pds">'</span>http://instagr.am/p/BUG/<span class="pl-pds">'</span></span>, <span class="pl-c1">maxwidth:</span> <span class="pl-c1">300</span>)</pre></div>
 
 <p>If you need to always customise the fetch with additional parameters this can be done by providing a fetch method in the service class. In this example we are adding a maxwidth parameter to the request.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="nb">require</span> <span class="s1">'oembed'</span>
+<div class="highlight highlight-ruby"><pre><span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>oembed<span class="pl-pds">'</span></span>
 
-<span class="k">class</span> <span class="nc">YoutubeApi</span>
-  <span class="kp">include</span> <span class="no">Oembed</span><span class="o">::</span><span class="no">Client</span>
+<span class="pl-k">class</span> <span class="pl-en">YoutubeApi</span>
+  <span class="pl-k">include</span> <span class="pl-s3">Oembed</span>::<span class="pl-vo">Client</span>
 
-  <span class="k">def</span> <span class="nf">endpoint_uri</span>
-    <span class="s1">'https://www.youtube.com/oembed'</span>
-  <span class="k">end</span>
+  <span class="pl-k">def</span> <span class="pl-en">endpoint_uri</span>
+    <span class="pl-s1"><span class="pl-pds">'</span>https://www.youtube.com/oembed<span class="pl-pds">'</span></span>
+  <span class="pl-k">end</span>
 
-  <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
-    <span class="k">super</span> <span class="n">url</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="ss">maxwidth</span><span class="p">:</span> <span class="mi">620</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
+  <span class="pl-k">def</span> <span class="pl-en">fetch</span>(<span class="pl-vpf">url</span>, <span class="pl-vpf">options</span><span class="pl-k">=</span>{})
+    <span class="pl-k">super</span> url, options.merge(<span class="pl-c1">maxwidth:</span> <span class="pl-c1">620</span>)
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
 
-<span class="n">client</span> <span class="o">=</span> <span class="no">YoutubeApi</span><span class="o">.</span><span class="n">new</span>
-<span class="n">client</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">'https://www.youtube.com/watch?v=_DRNgL76OLc'</span><span class="p">)</span>
-</pre></div>
+client <span class="pl-k">=</span> <span class="pl-s3">YoutubeApi</span>.<span class="pl-k">new</span>
+client.fetch(<span class="pl-s1"><span class="pl-pds">'</span>https://www.youtube.com/watch?v=_DRNgL76OLc<span class="pl-pds">'</span></span>)</pre></div>
 
 <h2>
-<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
 
 <ol>
 <li>Fork it</li>
@@ -200,7 +194,7 @@ Instagram and use <code>:maxwidth</code> parameter.</p>
 </ol>
 
 <h2>
-<a name="supported-ruby-versions" class="anchor" href="#supported-ruby-versions"><span class="octicon octicon-link"></span></a>Supported Ruby versions</h2>
+<a id="supported-ruby-versions" class="anchor" href="#supported-ruby-versions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported Ruby versions</h2>
 
 <p>This library is tested against the following Ruby implementations:</p>
 
@@ -209,7 +203,6 @@ Instagram and use <code>:maxwidth</code> parameter.</p>
 <li>MRI Ruby 2.0</li>
 <li>MRI Ruby 1.9.3</li>
 <li>JRuby</li>
-<li>Rubinius</li>
 </ul>
       </section>
       <footer>
