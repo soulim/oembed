@@ -25,6 +25,22 @@ RSpec.describe Oembed::Http do
       end
     end
 
+    context 'when response is a redirect, followed by a redirect' do
+      let(:redirect_uri_one)    { 'http://example.com/redirect_one' }
+      let(:redirect_uri_two)    { 'http://example.com/redirect_two' }
+
+      before do
+        FakeWeb.register_uri(:get, uri, body: 'Redirect', status: [301, 'Moved Permanently'], location: redirect_uri_one)
+        FakeWeb.register_uri(:get, redirect_uri_one, body: 'Redirect', status: [301, 'Moved Permanently'], location: redirect_uri_two)
+        FakeWeb.register_uri(:get, redirect_uri_two, body: 'OK', status: [200, 'OK'])
+      end
+
+      it 'should parse response body, eventually' do
+        expect(parser).to receive(:parse)
+        subject.get(uri)
+      end
+    end
+
     context 'when amount of redirects is above the limit' do
       before do
         FakeWeb.register_uri(:get, uri, body: 'Redirect', status: [301, 'Moved Permanently'])

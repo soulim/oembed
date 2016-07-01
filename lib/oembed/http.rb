@@ -36,7 +36,7 @@ module Oembed
 
     def follow_redirection(location, limit)
       if limit > 0
-        get(location, limit - 1)
+        get(location, limit: limit - 1)
       else
         raise Oembed::RedirectionTooDeepError, 'HTTP redirects too deep'
       end
