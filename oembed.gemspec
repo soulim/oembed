@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{A slim library to work with oEmbed format.}
   gem.summary       = %q{A slim library to work with oEmbed format.}
   gem.homepage      = "http://soulim.github.com/oembed"
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
