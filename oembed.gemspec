@@ -16,8 +16,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Oembed::VERSION
 
-  gem.add_development_dependency 'fakeweb'
-  gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'simplecov'
+  gem.add_development_dependency 'fakeweb', '~> 1.3'
+  gem.add_development_dependency 'rake', '~> 11.2', '>= 11.2.2'
+  gem.add_development_dependency 'rspec', '~> 3.5'
+  gem.add_development_dependency 'simplecov', '~> 0.12.0'
 end
