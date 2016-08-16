@@ -4,7 +4,7 @@ require File.expand_path('../lib/oembed/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Alex Sulim"]
   gem.email         = ["hello@sul.im"]
-  gem.description   = %q{A slim library to work with oEmbed format.}
+  gem.description   = %q{A slim library to work with oEmbed format. It has no external dependencies at runtime. All you need to have is Ruby itself.}
   gem.summary       = %q{A slim library to work with oEmbed format.}
   gem.homepage      = "http://soulim.github.com/oembed"
   gem.license       = 'MIT'
